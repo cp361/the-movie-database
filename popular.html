@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/js/popular.js" defer type="module"></script>
+    <title>Popular Movies</title>
+</head>
+<body>
+    
+
+    <header>
+
+        <h1>The Movie Database</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Now Playing</a></li>
+                <li><a href="popular.html">Popular</a></li>
+                <li><a href="top_rated.html">Top Rated</a></li>
+                <li><a href="upcoming.html">Upcoming</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    
+    <main id="popular">
+
+        <div id="pagination-controls">
+            <button id="previous">Previous</button>
+            <span id="page-number">Page 1</span>
+            <button id="next">Next</button>
+        </div>
+        <section id="movies-container">
+
+        </section>
+        
+        
+    </main>
+    
+
+    <footer>
+
+        <p>&copy; 2025 Casper Pedersen</p>
+        
+    </footer>
+    
+</body>
+<template id="movie-card-template">
+    <div class="movie-card">
+      <h3></h3>
+      <div class="movie-card-content">
+          <img src="" alt="" />
+          <ul>
+            <li class="overview"></li>
+            <li><p>Popularity:</p><span class="popularity"></span></li>
+            <li><p>Original title:</p><span class="original-title"></span></li>
+            <li><p>Release date:</p><span class="release-date"></span></li>
+          </ul>
+      </div>
+    </div>
+  </template>
+  
+</html>

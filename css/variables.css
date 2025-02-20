@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sigmar:wght@400&display=swap');
+
+
+
+:root {
+    --headerFont: 'Sigmar One', sans-serif;
+    --bodyFont: Poppins, sans-serif;
+
+    --mainFontColor: white;
+    --bodyFontColor: rgb(231, 231, 231);
+    --bodyBg: #080718;
+    
+    --headerBgColor: #0f403f;
+    --footerBgColor: #8f1010;
+    --navBgColor: #8f1010;
+
+    --buttonBgColor: #8f1010;
+
+    --movieCardBorderColor: #0f403f;
+}

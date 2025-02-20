@@ -1,0 +1,287 @@
+@import 'variables.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--bodyFont);
+    color: var(--mainFontColor);
+    background-color: var(--bodyBg);
+}
+
+header {
+    background-color: var(--headerBgColor);
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        font-family: var(--headerFont);
+        text-align: center;
+        padding: .5rem;
+    }
+
+    nav {
+        background-color: var(--navBgColor);
+        padding: 1rem;
+
+        ul {
+            list-style: none;
+            line-height: 1.5rem;    
+        }
+
+        a{
+            color: var(--mainFontColor);
+            text-decoration: none;
+
+        }
+    }
+    
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+
+    background-color: var(--footerBgColor);
+}
+
+main {
+    #movies-container:last-child {
+        margin-bottom: 5rem;
+    }
+    section#movies-container {
+        
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 2rem;
+        padding: 1rem;
+        
+        
+        .movie-card {
+            
+            border: .1rem solid var(--movieCardBorderColor);
+            border-radius: 1.3rem;
+
+            
+            
+            h3 {
+                color: var(--mainFontColor);
+                font-family: var(--headerFont);
+                font-weight: 500;
+                text-align: center;
+                margin-bottom: .5rem;
+                padding: 1rem;
+                background-color: var(--headerBgColor);
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
+            }
+            
+            img {
+                width: 50%;
+                display: block;
+                margin: auto;
+                border-radius: 1rem;
+            }
+            
+            ul {
+                list-style: none;
+                padding: 1rem;
+                color: var(--bodyFontColor);
+                
+                li {
+                    margin-bottom: 1rem;
+                    display: flex;
+                }
+
+                li:nth-child(n+2) {
+                    display: flex;
+                }
+
+                li:last-child {
+                    margin-bottom: 0;
+                }
+
+                p {
+                    font-weight: bold;
+                }
+                span {
+                    padding-left: .5rem;
+                }
+                
+            }
+        }
+        
+    }
+
+    #pagination-controls {
+        padding-top: 1rem;
+        display: flex;
+        justify-content: space-evenly;
+
+        #page-number {
+            color: var(--bodyFontColor);
+            display: flex;
+            align-items: center;
+            padding-right: 2rem;
+        }
+
+        button {
+            padding: .5rem 1rem;
+            border-radius: 1rem;
+            border: none;
+            color: var(--mainFontColor);
+            background-color: var(--buttonBgColor);
+        }
+
+    }
+    
+}
+
+@media (min-width: 768px) {
+
+    header {
+
+        nav {
+            ul {
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+        
+    }
+    
+    main {
+        
+        .movie-card {
+            width: 70%;
+            margin: auto;
+
+            li {
+                display: flex;
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 1024px) {
+
+    main {
+        
+        section#movies-container {
+
+            .movie-card {
+                width: 80%;
+
+                li {
+                    display: flex;
+                }
+    
+                h3 {
+                    margin-bottom: 0!important;
+                    text-align: start!important;
+                }
+                
+                .movie-card-content {
+                    display: flex;
+                    justify-content: space-between;
+                    
+                    img {
+                        border-radius: 0!important;
+                        border-bottom-left-radius: 1rem!important;
+                        height: 20rem;
+                        max-width: 20%;
+                        min-width: 20%;
+                    }
+                }
+                
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 1800px) {
+    
+
+    header {
+        h1 {
+            font-size: 4rem;
+        }
+        nav {
+            ul {
+                font-size: 2rem;
+            }
+            padding: 1.5rem 0;
+        }
+    }
+    
+    
+    main {
+        
+        section#movies-container {
+            
+
+
+            .movie-card {
+                width: 80%;
+    
+                h3 {
+                    font-size: 2.5rem;
+                }
+                
+                .movie-card-content {
+                    display: flex;
+                    justify-content: start;
+
+                    
+                    li {
+                        display: flex;
+                        font-size: 1.5rem;
+                    }
+                    
+                    img {
+                        border-radius: 0!important;
+                        border-bottom-left-radius: 1rem!important;
+                        max-height: 100%;
+                        max-width: 15%;
+                        min-width: 15%;
+                        margin: 0;
+                    }
+
+                    .movie-card-details {
+                        display: grid;
+                        grid-template-columns: 1fr .5fr;
+                        grid-template-rows: 1fr;
+                        grid-column-gap: 1rem;
+                    }
+                    
+                }
+                
+            }
+        }
+        
+        #pagination-controls{
+            font-size: 2rem;
+            justify-content: space-evenly;
+            width: 30%;
+            margin: auto;
+
+            #page-number {
+            }
+
+            button {
+                font-size: 1.5rem;
+                padding: 1rem 3rem;
+            }
+        }
+        
+    }
+}
