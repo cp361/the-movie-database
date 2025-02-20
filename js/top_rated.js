@@ -1,63 +1,64 @@
 import { BASE_URL, options } from './info.js';
 
-let currentPage = 1; //? Hold styr på den aktuelle side
+let currentPage = 1; //? Keeps track of the current page
 
-//? Funktion til at vise de mest populære film
+//? Function to display the top-rated movies
 const displayMovies = async (page = 1) => {
   const container = document.getElementById('movies-container');
-  container.innerHTML = ''; //? Rens containeren
+  container.innerHTML = ''; //? Clear the container to prepare for new content
 
-  const fragment = document.createDocumentFragment(); //? Brug fragment til at reducere DOM-manipulation
+  const fragment = document.createDocumentFragment(); //? Use a DocumentFragment to minimize DOM manipulation and improve performance
 
   try {
-    //? Hent data fra API for den ønskede side
+    //? Fetch top-rated movie data for the specified page from the API
     const response = await fetch(`${BASE_URL}/top_rated?language=en-US&page=${page}`, options);
-    const data = await response.json();
-    const movies = data.results;
+    const data = await response.json(); //? Convert the response to JSON
+    const movies = data.results; //? Extract the movie list from the API response
 
-    //? Gennemløb filmene og tilføj dem til fragmentet
+    //? Iterate over each movie and add it to the fragment
     movies.forEach(movie => {
-      const template = document.querySelector('#movie-card-template').content.cloneNode(true);
+      const template = document.querySelector('#movie-card-template').content.cloneNode(true); //? Clone the movie card template
 
-      //? Udfyld data i template
-      template.querySelector('h3').innerText = movie.title;
-      template.querySelector('img').setAttribute('src', `https://image.tmdb.org/t/p/w500${movie.poster_path}`);
-      template.querySelector('img').setAttribute('alt', movie.title);
-      template.querySelector('.overview').innerText = movie.overview;
-      template.querySelector('.original-title').innerText = movie.original_title;
-      template.querySelector('.release-date').innerText = movie.release_date;
-      template.querySelector('.vote-average').innerText = movie.vote_average;
-      template.querySelector('.vote-count').innerText = movie.vote_count;
+      //? Fill the template with movie data
+      template.querySelector('h3').innerText = movie.title; //? Set the movie title
+      template.querySelector('img').setAttribute('src', `https://image.tmdb.org/t/p/w500${movie.poster_path}`); //? Set the movie poster URL
+      template.querySelector('img').setAttribute('alt', movie.title); //? Add alt text for the movie poster
+      template.querySelector('.overview').innerText = movie.overview; //? Add the movie's overview
+      template.querySelector('.original-title').innerText = movie.original_title; //? Add the original title
+      template.querySelector('.release-date').innerText = movie.release_date; //? Add the release date
+      template.querySelector('.vote-average').innerText = movie.vote_average; //? Add the movie's average rating
+      template.querySelector('.vote-count').innerText = movie.vote_count; //? Add the total vote count
 
-      fragment.appendChild(template); //? Tilføj hver film til fragmentet
+      fragment.appendChild(template); //? Append the filled template to the fragment
     });
 
-    //? Tilføj alle film til DOM på én gang
+    //? Add all movies to the DOM in one operation to avoid excessive reflows
     container.appendChild(fragment);
 
-    //? Opdater sidevisning
+    //? Update the displayed page number
     document.getElementById('page-number').innerText = `Page ${page}`;
-
   } catch (error) {
-    console.error(error); //? Fejlbehandling
+    console.error(error); //? Handle and log errors in the console
   }
 };
 
-//? Funktion til at håndtere knapperne til pagination
+//? Function to handle pagination button clicks
 const handlePagination = () => {
+  //? Add event listener for the "Previous" button
   document.getElementById('previous').addEventListener('click', () => {
-    if (currentPage > 1) {
-      currentPage--;
-      displayMovies(currentPage);
+    if (currentPage > 1) { //? Ensure that the page number doesn’t go below 1
+      currentPage--; //? Decrement the page number
+      displayMovies(currentPage); //? Load movies for the new page
     }
   });
 
+  //? Add event listener for the "Next" button
   document.getElementById('next').addEventListener('click', () => {
-    currentPage++;
-    displayMovies(currentPage);
+    currentPage++; //? Increment the page number
+    displayMovies(currentPage); //? Load movies for the new page
   });
 };
 
-//? Kør funktionen for at vise filmene på første side og aktivér pagination
-displayMovies(currentPage);
-handlePagination();
+//? Display the movies for the first page and enable pagination controls on page load
+displayMovies(currentPage); //? Show movies on the initial page
+handlePagination(); //? Set up pagination buttons

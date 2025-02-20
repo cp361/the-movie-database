@@ -138,6 +138,7 @@ main {
             border: none;
             color: var(--mainFontColor);
             background-color: var(--buttonBgColor);
+            cursor: pointer;
         }
 
     }
